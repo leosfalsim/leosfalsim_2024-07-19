@@ -104,16 +104,42 @@
             </div>
 
             <ng-template #expandedTable>
-              <table style="width: 100%; border: 1px solid #ccc">
-                <tr>
-                  <th>Detalhe</th>
-                  <th>Valor</th>
-                </tr>
-                <tr *ngFor="let detalhe of rowData.detalhes[ano]">
-                  <td>{{ detalhe.nome }}</td>
-                  <td><input type="text" [(ngModel)]="detalhe.valor" /></td>
-                </tr>
-              </table>
+              <p-table
+                [value]="rowData.detalhes[ano]"
+                pEditableTable
+                [style]="{ 'margin-top': '10px' }"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th pEditableColumn>Detalhe</th>
+                    <th pEditableColumn>Valor</th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-detalhe>
+                  <tr>
+                    <td pEditableColumn>
+                      <p-cellEditor>
+                        <ng-template pTemplate="input">
+                          <input pInputText [(ngModel)]="detalhe.nome" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                          {{ detalhe.nome }}
+                        </ng-template>
+                      </p-cellEditor>
+                    </td>
+                    <td pEditableColumn>
+                      <p-cellEditor>
+                        <ng-template pTemplate="input">
+                          <input pInputText [(ngModel)]="detalhe.valor" />
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                          {{ detalhe.valor }}
+                        </ng-template>
+                      </p-cellEditor>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
             </ng-template>
           </td>
         </tr>
