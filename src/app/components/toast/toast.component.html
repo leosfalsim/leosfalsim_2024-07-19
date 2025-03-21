@@ -1,0 +1,12 @@
+<div class="toast-container position-fixed top-0 end-0 p-3" style="z-index: 1050">
+  <div class="toast-box" *ngIf="showToast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header" [ngClass]="getToastClass()">
+      <strong class="me-auto">Notificação</strong>
+      <button type="button" class="btn-close" (click)="hideToast()"></button>
+    </div>
+    <div class="toast-body" [ngClass]="getToastClass()">
+      {{ message }}
+      <div class="toast-progress" [style.width.%]="progress"></div>
+    </div>
+  </div>
+</div>

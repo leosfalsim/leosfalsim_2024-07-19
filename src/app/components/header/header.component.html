@@ -1,0 +1,15 @@
+<header class="header">
+  <div class="logo-container">
+    <img src="assets/zbra-logo.png" alt="Logo" class="logo-container__logo">
+  </div>
+  <div class="user-info" (click)="toggleMenu()">
+    <i class="bi bi-person-circle user-icon"></i>
+    <span class="user-name">{{ userName }}</span>
+    <i class="bi bi-chevron-down chevron-icon" [ngClass]="{ 'rotated': showMenu }"></i>
+    <ng-container *ngIf="showMenu">
+      <div class="user-menu" (click)="logout()">
+        <i class="bi bi-box-arrow-left"></i> Sair
+      </div>
+    </ng-container>
+  </div>
+</header>

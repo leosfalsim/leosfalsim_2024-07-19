@@ -1,0 +1,123 @@
+<div class="home-page">
+  <section class="home-page__intro">
+    <div class="container">
+      <h1 class="home-page__title">Bem-vindo à SoftTech Solutions</h1>
+      <p class="home-page__description">
+        Transformamos ideias em soluções digitais inovadoras. A sua parceira
+        ideal para desenvolvimento de software.
+      </p>
+      <button class="home-page__cta-btn">Conheça nossos serviços</button>
+    </div>
+  </section>
+
+  <section class="home-page__features">
+    <div class="container">
+      <h2 class="home-page__section-title">Nossos Serviços</h2>
+      <div class="row">
+        <div class="col-md-4 mb-4">
+          <div class="home-page__feature">
+            <i class="bi bi-laptop home-page__icon"></i>
+            <h3 class="home-page__feature-title">Desenvolvimento Web</h3>
+            <p class="home-page__feature-description">
+              Criação de sites e aplicativos web com as tecnologias mais
+              avançadas e práticas de desenvolvimento ágil.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="home-page__feature">
+            <i class="bi bi-phone home-page__icon"></i>
+            <h3 class="home-page__feature-title">Desenvolvimento Mobile</h3>
+            <p class="home-page__feature-description">
+              Aplicativos móveis nativos e híbridos que oferecem a melhor
+              experiência para seus usuários.
+            </p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="home-page__feature">
+            <i class="bi bi-shield home-page__icon"></i>
+            <h3 class="home-page__feature-title">Consultoria em TI</h3>
+            <p class="home-page__feature-description">
+              Consultoria especializada para otimizar processos e implementar as
+              melhores soluções tecnológicas para seu negócio.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="home-page__about">
+    <div class="container">
+      <h2 class="home-page__section-title">Sobre Nós</h2>
+      <p class="home-page__about-description">
+        A SoftTech Solutions é uma empresa de desenvolvimento de software com
+        mais de 10 anos de experiência no mercado. Nossa missão é transformar
+        desafios em oportunidades através da tecnologia, oferecendo soluções
+        personalizadas para empresas de todos os tamanhos.
+      </p>
+      <p class="home-page__about-description">
+        Nossa equipe é composta por desenvolvedores experientes, designers
+        criativos e consultores especializados, todos empenhados em entregar
+        produtos de alta qualidade e superar as expectativas dos nossos
+        clientes.
+      </p>
+    </div>
+  </section>
+  <section>
+    <p-table #dt [value]="dados" [scrollable]="true" scrollHeight="500px">
+      <ng-template pTemplate="header">
+        <tr>
+          <!-- Colunas Fixas -->
+          <th pResizableColumn class="frozen-column">Código</th>
+          <th pResizableColumn class="frozen-column">Portfólio Detalhado</th>
+
+          <!-- Colunas Expansíveis -->
+          <th *ngFor="let ano of anos" pResizableColumn>
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+              "
+            >
+              {{ ano }}
+              <button (click)="toggleExpand(ano)">
+                {{ colunasExpandidas.includes(ano) ? "-" : "+" }}
+              </button>
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <!-- Colunas Fixas -->
+          <td class="frozen-column">{{ rowData.codigo }}</td>
+          <td class="frozen-column">{{ rowData.portfolio }}</td>
+
+          <!-- Colunas Expansíveis -->
+          <td *ngFor="let ano of anos">
+            <div *ngIf="!colunasExpandidas.includes(ano); else expandedTable">
+              {{ rowData[ano] }}
+            </div>
+
+            <ng-template #expandedTable>
+              <table style="width: 100%; border: 1px solid #ccc">
+                <tr>
+                  <th>Detalhe</th>
+                  <th>Valor</th>
+                </tr>
+                <tr *ngFor="let detalhe of rowData.detalhes[ano]">
+                  <td>{{ detalhe.nome }}</td>
+                  <td><input type="text" [(ngModel)]="detalhe.valor" /></td>
+                </tr>
+              </table>
+            </ng-template>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </section>
+</div>

@@ -1,0 +1,27 @@
+@import '../../styles/variables';
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+  .header {
+    height: $header-height;
+    background-color: #343a40;
+    color: $white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 $padding-medium;
+  }
+
+  .main-content {
+    display: flex;
+    flex: 1;
+  }
+
+  .content {
+    flex: 1;
+    overflow-y: auto;
+  }
+}
